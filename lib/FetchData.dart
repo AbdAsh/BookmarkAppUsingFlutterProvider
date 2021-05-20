@@ -1,14 +1,15 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'Bookmark.dart';
+import 'Keys.dart';
 
 class FetchData {
 
   Future<List<Bookmark>> fetchBookmarks() async {
-    String apiKey = '4ba6944810e14f2d8518e70d4c815b4b';
+
     final response = await http.get(
-        'http://newsapi.org/v2/everything?q=bitcoin&from=2020-07-20&sortBy=publishedAt&apiKey=' +
-            apiKey);
+        'https://newsapi.org/v2/everything?q=tesla&from=2021-04-20&sortBy=publishedAt&apiKey=' +
+            Keys.apiKey);
 
     if (response.statusCode == 200) {
       var data = json.decode(response.body)['articles'] as List;

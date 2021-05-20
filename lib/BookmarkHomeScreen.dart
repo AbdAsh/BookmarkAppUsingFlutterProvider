@@ -5,8 +5,7 @@ import 'Bookmark.dart';
 import 'BookmarkDetailPage.dart';
 import 'package:provider/provider.dart';
 
-  class BookmarkHomeScreen extends StatelessWidget {
-
+class BookmarkHomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final BookmarkBloc bookmarkBloc = Provider.of<BookmarkBloc>(context);
@@ -47,9 +46,7 @@ import 'package:provider/provider.dart';
                                   BookmarkDetailPage(bookmarksList[index]),
                             ));
                       },
-                      child: cardContent)
-              )
-          );
+                      child: cardContent)));
         }));
   }
 
@@ -61,17 +58,18 @@ import 'package:provider/provider.dart';
         crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
           Container(
-            width: 275,
+            width: 250,
             height: 80,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-                Text(
-                  bookmark.title,
-                  textScaleFactor: 1.2,
-                  overflow: TextOverflow.fade,
-                  style: TextStyle(fontWeight: FontWeight.w600),
+                Flexible(
+                  child: Text(
+                    bookmark.title,
+                    textScaleFactor: 1.2,
+                    style: TextStyle(fontWeight: FontWeight.w600),
+                  ),
                 ),
                 Flexible(
                   child: Text(
@@ -84,6 +82,7 @@ import 'package:provider/provider.dart';
               ],
             ),
           ),
+          SizedBox(width: 10),
           Container(
             width: 100,
             height: 100,
@@ -100,11 +99,10 @@ import 'package:provider/provider.dart';
 
   Widget _buildBottomNavigator() {
     List<BottomNavigationBarItem> items = [
-      BottomNavigationBarItem(icon: Icon(Icons.home), title: Text('Home')),
+      BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
+      BottomNavigationBarItem(icon: Icon(Icons.favorite), label: 'Favourites'),
       BottomNavigationBarItem(
-          icon: Icon(Icons.favorite), title: Text('Favourites')),
-      BottomNavigationBarItem(
-          icon: Icon(Icons.account_circle), title: Text('Account')),
+          icon: Icon(Icons.account_circle), label: 'Account'),
     ];
     return BottomNavigationBar(items: items);
   }
